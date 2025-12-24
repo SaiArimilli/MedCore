@@ -1,0 +1,37 @@
+:root {
+  --font-family: 'Inter', sans-serif;
+  --font-scale: 1;
+  --primary: #2563eb; /* blue-600 */
+  --on-primary: #ffffff;
+  --bg: #f8fafc; /* slate-50 */
+  --text: #0f172a; /* slate-900 */
+  --muted: #6b7280; /* slate-500 */
+  --modal-backdrop: rgba(15, 23, 42, 0.6);
+  --modal-text: #0b1220;
+}
+
+html, body, #root {
+  height: 100%;
+}
+body {
+  font-family: var(--font-family);
+  font-size: calc(1rem * var(--font-scale));
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Utility classes that use variables */
+.primary-bg { background-color: var(--primary); color: var(--on-primary); }
+.primary-text { color: var(--primary); }
+.muted { color: var(--muted); }
+.var-text { color: var(--modal-text); }
+
+/* Modal backdrop fix to ensure visibility */
+.modal-backdrop {
+  background: var(--modal-backdrop);
+}
+
+/* Inputs - ensure high contrast text */
+input, textarea, select {
+  color: var(--text);
+}

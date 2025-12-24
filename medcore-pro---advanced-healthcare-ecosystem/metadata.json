@@ -1,0 +1,9 @@
+
+{
+  "name": "MedCore Pro - Advanced Healthcare Ecosystem",
+  "description": "A comprehensive healthcare platform providing appointment booking, AI-driven medical assistance via Gemini, a digital pharmacy, and multi-role dashboards for patients, doctors, and admins.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
