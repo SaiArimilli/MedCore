@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "medcore-pro---advanced-healthcare-ecosystem/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/medcore-pro---advanced-healthcare-ecosystem/dist/$1" }
+  ]
+}

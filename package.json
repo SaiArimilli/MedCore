@@ -8,10 +8,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run dev"
+    "dev": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run dev",
+    "build": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run build",
+    "start": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run preview"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
-    "vite": "^7.3.0"
+    "vite": "^7.3.0",
+    "vercel": "^29.0.0"
   }
 }
