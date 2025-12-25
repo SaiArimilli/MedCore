@@ -1,0 +1,7 @@
+[build]
+  base = "medcore-pro---advanced-healthcare-ecosystem"
+  command = "npm run build"
+  publish = "medcore-pro---advanced-healthcare-ecosystem/dist"
+
+[context.production.environment]
+  NODE_VERSION = "24"
