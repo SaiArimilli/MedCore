@@ -77,6 +77,8 @@ const App: React.FC = () => {
                 path="/admin" 
                 element={user?.role === UserRole.ADMIN ? <AdminPanel /> : <Navigate to="/" />} 
               />
+              {/* Dev-only preview route for AdminPanel (no auth) */}
+              <Route path="/admin-preview" element={<AdminPanel />} />
             </Routes>
           </main>
           
