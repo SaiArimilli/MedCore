@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../App';
 import { UserRole } from '../types';
 import { Lock, Mail, User, Phone, CheckCircle2 } from 'lucide-react';
@@ -28,6 +29,23 @@ const Auth: React.FC = () => {
     const uid = Math.random().toString(36).slice(2, 10);
     login(`${uid}@facebook.mock`, role);
   };
+
+  // Read query params to pre-select role and open sign-up when navigated from CTA
+  const location = useLocation();
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const r = params.get('role');
+    const signup = params.get('signup');
+    if (r) {
+      // Map string role to enum if possible
+      if ((Object as any).values(UserRole).includes(r)) {
+        setRole(r as UserRole);
+      }
+    }
+    if (signup === '1' || signup === 'true') {
+      setIsLogin(false);
+    }
+  }, [location.search]);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-slate-50">

@@ -124,9 +124,9 @@ const Home: React.FC = () => {
               <Link to="/auth" className="bg-white text-slate-900 px-10 py-4 rounded-2xl font-bold text-center hover:bg-blue-50 transition-colors shadow-xl">
                 Create Free Account
               </Link>
-              <button className="border border-slate-700 text-white px-10 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-colors">
-                For Medical Providers
-              </button>
+                <Link to="/auth?role=DOCTOR&signup=1" className="border border-slate-700 text-white px-10 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-colors text-center">
+                  For Medical Providers
+                </Link>
             </div>
           </div>
         </div>
