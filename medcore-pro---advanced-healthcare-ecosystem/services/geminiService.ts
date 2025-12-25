@@ -1,30 +1,41 @@
+// Client-side service that calls a serverless endpoint for AI responses.
+// Falls back to a simple rule-based reply when the endpoint is unavailable.
 
-import { GoogleGenAI } from "@google/genai";
-
-// Always use the API key directly from process.env.API_KEY as per guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const mockReply = (prompt: string) => {
+	const p = prompt.toLowerCase();
+	if (p.includes('appointment') || p.includes('book')) {
+		return "You can book a specialist via our Booking page: go to /#/booking. Would you like help finding a doctor? \n\nDisclaimer: I am an AI assistant, not a doctor. In emergencies call local services immediately.";
+	}
+	if (p.includes('fever') || p.includes('temperature')) {
+		return "A common recommendation is to rest, stay hydrated, and use paracetamol as per recommended dosage. If fever is >39°C or persists more than 48 hours, seek medical care. \n\nDisclaimer: I am an AI assistant, not a doctor.";
+	}
+	if (p.includes('hello') || p.includes('hi') || p.includes('hey')) {
+		return "Hello! I'm MedCore's AI assistant — ask me about symptoms, booking, or medicines. \n\nDisclaimer: I am an AI assistant, not a doctor.";
+	}
+	return "Sorry, I don't have a precise answer for that. Please try rephrasing your question or ask about booking, symptoms, or medicines. \n\nDisclaimer: I am an AI assistant, not a doctor.";
+};
 
 export const getHealthcareResponse = async (prompt: string) => {
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: prompt,
-      config: {
-        systemInstruction: `You are an advanced AI Healthcare Assistant for MedCore Pro. 
-        Your goals:
-        1. Help users with basic health inquiries using professional medical terminology but clear explanations.
-        2. Assist with scheduling information (directing users to the booking page).
-        3. Provide information about medicines (dosages, side effects, general use).
-        4. ALWAYS include a medical disclaimer: "I am an AI, not a doctor. In case of emergency, call local emergency services immediately or visit the nearest hospital."
-        5. Be empathetic, concise, and professional.`,
-        temperature: 0.7,
-      },
-    });
+	try {
+		const res = await fetch('/.netlify/functions/genai', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ prompt }),
+		});
 
-    // Access the .text property directly (not as a function call)
-    return response.text;
-  } catch (error) {
-    console.error("Gemini Error:", error);
-    return "I'm having trouble connecting to my knowledge base. Please try again or contact support.";
-  }
+		if (!res.ok) {
+			console.warn('GenAI function returned', res.status);
+			return mockReply(prompt);
+		}
+
+		const data = await res.json();
+		if (data && data.text) return data.text;
+		return mockReply(prompt);
+	} catch (err) {
+		console.error('Error calling GenAI function:', err);
+		return mockReply(prompt);
+	}
 };
+
+
+
