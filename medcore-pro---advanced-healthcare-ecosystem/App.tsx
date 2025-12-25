@@ -101,9 +101,8 @@ const App: React.FC = () => {
               <div>
                 <h4 className="font-semibold mb-4">Emergency</h4>
                 <p className="text-slate-400">24/7 Helpline: 1-800-MED-CARE</p>
-                <button className="mt-4 bg-red-500 hover:bg-red-600 px-6 py-2 rounded-full font-bold transition-colors">
-                  SOS Button
-                </button>
+                import SOSButton from './components/SOSButton';
+                <SOSButton />
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Contact</h4>
