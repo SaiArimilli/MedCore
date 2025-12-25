@@ -1,5 +1,6 @@
 
 import React from 'react';
+import homeImage from './homeimage.webp';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -62,7 +63,7 @@ const Home: React.FC = () => {
           <div className="relative">
             <div className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
             <img 
-              src="pages/homeimage.webp" 
+              src={homeImage} 
               alt="Medical Team" 
               className="rounded-[40px] shadow-2xl relative z-10 w-full object-cover aspect-[4/5] lg:aspect-auto h-[500px] lg:h-auto"
             />
