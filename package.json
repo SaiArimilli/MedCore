@@ -12,7 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run dev",
-    "build": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run build",
+    "build": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem install && npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run build",
     "start": "npm --prefix ./medcore-pro---advanced-healthcare-ecosystem run preview"
   },
   "devDependencies": {
